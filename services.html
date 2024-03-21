@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Vitaly Tea</title>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+        <link rel="icon" href="favicon.gif" type="image/gif">
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        <style>
+            
+        body {
+            font-family: Georgia, 'Times New Roman', Times, serif;
+        }
+        .header-border {
+            border-bottom: 2px solid #333;
+            padding-bottom: 10px;
+        }
+        .footer-border {
+            border-top: 2px solid #333;
+            padding-top: 10px;
+        }
+        .accordion-button:not(.collapsed) {
+            color: #333;
+            background-color: #d4fce9;
+            box-shadow: inset 0 -1px 0 rgba(160, 67, 67, 0.13);
+        }
+        .accordion-button::after {
+            background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='%23333' viewBox='0 0 16 16'%3e%3cpath fill-rule='evenodd' d='M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z'/%3e%3c/svg%3e");
+        }
+        .accordion-body {
+            min-height: 150px; 
+            padding: 15px; /* Uniform padding */
+        }
+        
+        .accordion-item {
+            margin-bottom: 10px; /* Consistent spacing between accordion items */
+        }
+        
+        .binding-icon, .brand-icon, .drink-icon {
+            width: 85px;
+            height: auto;
+            margin-right: 10px;
+        }
+        .drink-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+    
+        /* Custom checkbox styles */
+        input[type='checkbox'] {
+            -webkit-appearance: none; 
+            -moz-appearance: none;
+            appearance: none;
+            width: 20px; /* Custom width */
+            height: 20px; /* Custom height */
+            background-color: #fff; /* Background color */
+            border: 2px solid #333; /* Darker border color */
+            cursor: pointer;
+        }
+    
+        input[type='checkbox']:checked {
+            background-color: #333; /* Darker background color for checked state */
+        }
+    
+        /* Custom checkbox checkmark style */
+        input[type='checkbox']:checked::after {
+            content: '';
+            display: block;
+            width: 6px;
+            height: 11px;
+            border: solid white;
+            border-width: 0 3px 3px 0;
+            transform: rotate(45deg);
+            margin: 2px 0 0 6px;
+        }
+    
+        .logo-image {
+        height: 100px; 
+        vertical-align: middle;
+        margin-right: 15px;
+    }
+    
+    .inline-heading {
+        display: inline-block;
+        vertical-align: middle;
+    }
+    .drink-image {
+        width: 100px;
+        height: 100px;
+        background-size: cover;
+        background-position: center;
+        border-radius: 50%;
+    }
+    
+    
+    </style>
+</head>
+<body>
+    <header class="header-border text-center">
+        <img src="logo.gif" alt="Vitaly Tea Logo" class="logo-image"> 
+        <h1 class="inline-heading">Welcome to Vitaly Tea</h1>
+    </header>
+    
+    <div class="container">
+        <nav class="navbar navbar-expand-lg bg-light">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="#">Vitaly Tea</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav">
+                        <li class="nav-item">
+                            <a class="nav-link" href="index.html">Menu</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="services.html">Services</a>
+                        </li>                 
+                        <li class="nav-item">
+                            <a class="nav-link" href="order.html">Order</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="about.html">About</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="contact.html">Contact</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+
+        <section id="services">
+            <h2 class="my-5">Services</h2>
+            
+            <!-- Digital Printing -->
+            <div class="accordion" id="digitalPrintingAccordion">
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="digitalPrintingHeading">
+                        <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#digitalPrintingCollapse" aria-expanded="true" aria-controls="digitalPrintingCollapse">
+                            Digital Printing
+                        </button>
+                    </h2>
+                    <div id="digitalPrintingCollapse" class="accordion-collapse collapse show" aria-labelledby="digitalPrintingHeading" data-bs-parent="#digitalPrintingAccordion">
+                        <div class="accordion-body">
+                            <h3>Paper Stock</h3>
+                            <ul>
+                                <li>Glossy -  any coated papers designed to present an ultra-smooth to shiny appearance. </li>
+                                <div class="d-flex align-items-center">
+                                    <button type="button" class="btn btn-secondary minus" data-item="glossy">-</button>
+                                    <input type="number" class="form-control order-quantity mx-2" data-item="glossy" value="0" min="0">
+                                    <button type="button" class="btn btn-secondary plus" data-item="glossy">+</button>
+                                </div>
+                                
+                                <li>Matte - is more shiny than uncoated but less than paper with a gloss finish.</li>
+                                <div class="d-flex align-items-center">
+                                    <button type="button" class="btn btn-secondary minus" data-item="matte">-</button>
+                                    <input type="number" class="form-control order-quantity mx-2" data-item="matte" value="0" min="0">
+                                    <button type="button" class="btn btn-secondary plus" data-item="matte">+</button>
+                                </div>
+                                
+                                <li>Textured - a premium grade paper stock that features a textured surface for high quality printing and finishing.</li>
+                                <div class="d-flex align-items-center">
+                                    <button type="button" class="btn btn-secondary minus" data-item="textured">-</button>
+                                    <input type="number" class="form-control order-quantity mx-2" data-item="textured" value="0" min="0">
+                                    <button type="button" class="btn btn-secondary plus" data-item="textured">+</button>
+                            </ul>
+                            <h3>Ink</h3>
+                            <p>Another important element of printing is ink. We will guarantee that our ink does not run, smear, blotch. It also does not stick to other printed pages unlike the result in other digital printing presses.</p>
+                            <!-- Ink Brands -->
+                            <h4>Our Brands:</h4>
+                            <ul>
+                                <li>
+                                     <img src="hp.jpg" alt="HP Logo" class="brand-icon">
+                                     <input type="checkbox" id="hpInk" name="inkBrand" value="Hewlett Packard">
+                                     <label for="hpInk">Hewlett Packard</label>
+                                </li>
+                                <li>
+                                    <img src="epson.jpg" alt="Epson Logo" class="brand-icon">
+                                    <input type="checkbox" id="epsonInk" name="inkBrand" value="Epson">
+                                    <label for="epsonInk">Epson</label>
+                                </li>
+                                <li>
+                                    <img src="Canon.jpg" alt="Canon Logo" class="brand-icon">
+                                    <input type="checkbox" id="canonInk" name="inkBrand" value="Canon">
+                                    <label for="canonInk">Canon</label>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            <!-- Binding -->
+            <div class="accordion" id="bindingAccordion">
+<div class="accordion-item">
+<h2 class="accordion-header" id="bindingHeading">
+    <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#bindingCollapse" aria-expanded="true" aria-controls="bindingCollapse">
+        Binding
+    </button>
+</h2>
+<div id="bindingCollapse" class="accordion-collapse collapse show" aria-labelledby="bindingHeading" data-bs-parent="#bindingAccordion">
+    <div class="accordion-body">
+        <h3>Binding Options:</h3>
+        <div class="d-flex align-items-center mb-3">
+            <img src="saddle.jpg" alt="Saddle Stitch" class="binding-icon me-2">
+            <div>
+                <input class="form-check-input" type="checkbox" value="Saddle Stitch" id="saddleStitch">
+                <label class="form-check-label" for="saddleStitch">Saddle Stitch</label>
+            </div>
+        </div>
+        <div class="d-flex align-items-center mb-3">
+            <img src="heat.jpg" alt="Heated Spine" class="binding-icon me-2">
+            <div>
+                <input class="form-check-input" type="checkbox" value="Heated Spine" id="heatedSpine">
+                <label class="form-check-label" for="heatedSpine">Heated Spine</label>
+            </div>
+        </div>
+        <div class="d-flex align-items-center mb-3">
+            <img src="wire.jpg" alt="Wire" class="binding-icon me-2">
+            <div>
+                <input class="form-check-input" type="checkbox" value="Wire" id="wireBinding">
+                <label class="form-check-label" for="wireBinding">Wire</label>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+</div>
+            <!-- Laminating and Cutting -->
+           <div class="accordion" id="finishingAccordion">
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="finishingHeading">
+                    <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#finishingCollapse" aria-expanded="true" aria-controls="finishingCollapse">
+                        Finishing Options
+                    </button>
+                </h2>
+                <div id="finishingCollapse" class="accordion-collapse collapse show" aria-labelledby="finishingHeading" data-bs-parent="#finishingAccordion">
+                    <div class="accordion-body">
+                        <h3>Choose your finishing options:</h3>
+                        <div>
+                            <input type="checkbox" id="laminating" name="finishingOption" value="Laminating">
+                            <label for="laminating">Laminating</label>
+                        </div>
+                        <div>
+                            <input type="checkbox" id="cutting" name="finishingOption" value="Cutting">
+                            <label for="cutting">Cutting</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        </section>
+
+        <!-- Total Order -->
+        <h2 class="my-5">Total Order</h2>
+        <div id="totalOrder" class="mb-3"></div>
+
+        <!-- Amount to Pay -->
+        <h2 class="my-5">Amount to Pay</h2>
+        <div id="amountToPay" class="mb-3"></div>
+
+        <button type="button" class="btn btn-primary" id="submitOrder">Submit Order</button>
+    </form>
+</section>
+
+    <footer class="footer-border text-center mt-4">
+        <p class="mb-0">&copy; 2024 Vitaly Tea. All rights reserved.</p>
+    </footer>
+    
+    <!-- Bootstrap and jQuery scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js"></script>
+    <script src="js/script.js"></script>
+</body>
+</html>

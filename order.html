@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Vitaly Tea</title>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+        <link rel="icon" href="favicon.gif" type="image/gif">
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        <style>
+            
+        body {
+            font-family: Georgia, 'Times New Roman', Times, serif;
+        }
+        .header-border {
+            border-bottom: 2px solid #333;
+            padding-bottom: 10px;
+        }
+        .footer-border {
+            border-top: 2px solid #333;
+            padding-top: 10px;
+        }
+        .accordion-button:not(.collapsed) {
+            color: #333;
+            background-color: #d4fce9;
+            box-shadow: inset 0 -1px 0 rgba(160, 67, 67, 0.13);
+        }
+        .accordion-button::after {
+            background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='%23333' viewBox='0 0 16 16'%3e%3cpath fill-rule='evenodd' d='M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z'/%3e%3c/svg%3e");
+        }
+        .accordion-body {
+            min-height: 150px; 
+            padding: 15px; /* Uniform padding */
+        }
+        
+        .accordion-item {
+            margin-bottom: 10px; /* Consistent spacing between accordion items */
+        }
+        
+        .binding-icon, .brand-icon, .drink-icon {
+            width: 85px;
+            height: auto;
+            margin-right: 10px;
+        }
+        .drink-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+    
+        /* Custom checkbox styles */
+        input[type='checkbox'] {
+            -webkit-appearance: none; 
+            -moz-appearance: none;
+            appearance: none;
+            width: 20px; /* Custom width */
+            height: 20px; /* Custom height */
+            background-color: #fff; /* Background color */
+            border: 2px solid #333; /* Darker border color */
+            cursor: pointer;
+        }
+    
+        input[type='checkbox']:checked {
+            background-color: #333; /* Darker background color for checked state */
+        }
+    
+        /* Custom checkbox checkmark style */
+        input[type='checkbox']:checked::after {
+            content: '';
+            display: block;
+            width: 6px;
+            height: 11px;
+            border: solid white;
+            border-width: 0 3px 3px 0;
+            transform: rotate(45deg);
+            margin: 2px 0 0 6px;
+        }
+    
+        .logo-image {
+        height: 100px; 
+        vertical-align: middle;
+        margin-right: 15px;
+    }
+    
+    .inline-heading {
+        display: inline-block;
+        vertical-align: middle;
+    }
+    .drink-image {
+        width: 100px;
+        height: 100px;
+        background-size: cover;
+        background-position: center;
+        border-radius: 50%;
+    }
+    
+    
+    </style>
+</head>
+<body>
+    <header class="header-border text-center">
+        <img src="logo.gif" alt="Vitaly Tea Logo" class="logo-image"> 
+        <h1 class="inline-heading">Welcome to Vitaly Tea</h1>
+    </header>
+    
+    <div class="container">
+        <nav class="navbar navbar-expand-lg bg-light">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="#">Vitaly Tea</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav">
+                        <li class="nav-item">
+                            <a class="nav-link" href="index.html">Menu</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="services.html">Services</a>
+                        </li>                 
+                        <li class="nav-item">
+                            <a class="nav-link" href="order.html">Order</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="about.html">About</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="contact.html">Contact</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+
+    <section id="order">
+        <h2 class="my-5">Order</h2>
+        <form id="orderForm">
+
+        <!-- Warm Drinks Section -->
+        <div class="accordion mb-3" id="warmDrinksAccordion">
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="headingWarmDrinks">
+                    <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseWarmDrinks" aria-expanded="true" aria-controls="collapseWarmDrinks">
+                        Warm Drinks
+                    </button>
+                </h2>
+                <div id="collapseWarmDrinks" class="accordion-collapse collapse show" aria-labelledby="headingWarmDrinks" data-bs-parent="#warmDrinksAccordion">
+                    <div class="accordion-body">
+                    
+                        <div class="d-flex justify-content-between align-items-center mb-3">
+                            <div>
+                    <h5>Spiced Vanilla Almond Milk- $5.00</h5>
+                    <p>(Creamy almond milk infused with vanilla and spices for a comforting dairy-free treat.)</p>
+                    <div class="drink-image" style="background-image: url('https://happygutlucky.com/wp-content/uploads/2023/06/spiced-vitamix-almond-milk-happy-gut-lucky-04.jpg')"></div>
+                </div>
+                <div class="quantity-controls">
+                    <input type="number" class="form-control order-quantity" data-item="hotcoffee" value="0" min="0" data-price="3.00">
+                </div>
+            </div>
+
+            <div class="d-flex justify-content-between align-items-center mb-3">
+                <div>
+                    <h5>Green Tea - $5.00</h5>
+                    <p>(Refreshing and antioxidant-rich tea with a grassy flavor and gentle caffeine boost.)</p>
+                    <div class="drink-image" style="background-image: url('https://t3.ftcdn.net/jpg/00/54/46/64/360_F_54466478_IB1xs2G2zV3wZzNX2iAwAUPC4balBJhJ.jpg')"></div>
+                </div>
+                <div class="quantity-controls">
+                    <input type="number" class="form-control order-quantity" data-item="hotcoffee" value="0" min="0" data-price="3.00">
+                </div>
+            </div>
+
+            <div class="d-flex justify-content-between align-items-center mb-3">
+                <div>
+                    <h5>Hot Chocolate - $5.00</h5>
+                    <p>(Decadent cocoa melded with creamy milk for a comforting and indulgent beverage.)</p>
+                    <div class="drink-image" style="background-image: url('https://supersimple.com/wp-content/uploads/rawpixel-1094655-unsplash.jpg')"></div>
+                </div>
+                <div class="quantity-controls">
+                    <input type="number" class="form-control order-quantity" data-item="hotcoffee" value="0" min="0" data-price="3.00">
+                </div>
+            </div>
+
+            <div class="d-flex justify-content-between align-items-center mb-3">
+                <div>
+                    <h5>Hot Coffee - $5.00</h5>
+                    <p>(Bold and energizing, brewed from freshly ground beans for a morning pick-me-up.)</p>
+                    <div class="drink-image" style="background-image: url('https://images.unsplash.com/photo-1596098823457-74e360fcd023?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8aG90JTIwY29mZmVlfGVufDB8fDB8fHww')"></div>
+                </div>
+                <div class="quantity-controls">
+                    <input type="number" class="form-control order-quantity" data-item="hotcoffee" value="0" min="0" data-price="3.00">
+                </div>
+            </div>
+
+            <div class="d-flex justify-content-between align-items-center mb-3">
+                <div>
+                    <h5>Cappucino - $5.00</h5>
+                    <p>(Luxurious layers of espresso, steamed milk, and frothy foam for a sophisticated coffee experience)</p>
+                    <div class="drink-image" style="background-image: url('https://upload.wikimedia.org/wikipedia/commons/c/c8/Cappuccino_at_Sightglass_Coffee.jpg')"></div>
+                </div>
+                <div class="quantity-controls">
+                    <input type="number" class="form-control order-quantity" data-item="hotcoffee" value="0" min="0" data-price="3.00">
+                </div>
+            </div>
+        </section>
+
+          <!-- Cold Drinks Section -->
+        <section>
+        <div class="accordion mb-3" id="ColdDrinksAccordion">
+        <div class="accordion-item">
+            <h2 class="accordion-header" id="headingColdDrinks">
+                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseColdDrinks" aria-expanded="true" aria-controls="collapseColdDrinks">
+                    Cold Drinks
+                </button>
+            </h2>
+            <div id="collapseColdDrinks" class="accordion-collapse collapse show" aria-labelledby="headingColdDrinks" data-bs-parent="#warmColdAccordion">
+                <div class="accordion-body">
+                    <div class="d-flex justify-content-between align-items-center mb-3">
+                        <div>
+                    <h5>Iced Tea - $5.00</h5>
+                    <p>(refreshing beverage made by steeping tea leaves in cold water and served over ice.)</p>
+                    <div class="drink-image" style="background-image: url('https://upload.wikimedia.org/wikipedia/commons/e/e1/NCI_iced_tea.jpg')"></div>
+                </div>
+                <div class="quantity-controls">
+                    <input type="number" class="form-control order-quantity" data-item="icedtea" value="0" min="0" data-price="2.50">
+                </div>
+            </div>
+
+            <div class="d-flex justify-content-between align-items-center mb-3">
+                <div>
+                    <h5>Lemonade - $5.00</h5>
+                    <p>(Tangy-sweet drink made from lemon juice, water, and sugar, perfect for hot days.)</p>
+                    <div class="drink-image" style="background-image: url('https://cdn.pixabay.com/photo/2017/02/25/09/30/lemonade-2097312_640.jpg')"></div>
+                </div>
+                <div class="quantity-controls">
+                    <input type="number" class="form-control order-quantity" data-item="icedtea" value="0" min="0" data-price="2.50">
+                </div>
+            </div>
+
+            <div class="d-flex justify-content-between align-items-center mb-3">
+                <div>
+                    <h5>Cold Brew Coffee - $5.00</h5>
+                    <p>(Smooth, rich coffee made by steeping coffee grounds in cold water for hours, served over ice.)</p>
+                    <div class="drink-image" style="background-image: url('https://media.istockphoto.com/id/681751188/photo/iced-coffee-or-caffe-latte.jpg?s=612x612&w=0&k=20&c=PzwaTUx3ETZtMvO-ihtK6DnPnnoL6JGVIjkHtc7nDm0=')"></div>
+                </div>
+                <div class="quantity-controls">
+                    <input type="number" class="form-control order-quantity" data-item="icedtea" value="0" min="0" data-price="2.50">
+                </div>
+            </div>
+
+            <div class="d-flex justify-content-between align-items-center mb-3">
+                <div>
+                    <h5>Fruit Smoothie - $5.00</h5>
+                    <p>(Blended mix of fresh or frozen fruits, yogurt, and juice for a quick and nutritious drink.)</p>
+                    <div class="drink-image" style="background-image: url('https://img.freepik.com/premium-photo/fruit-berry-healthy-fresh-smothie-plastic-cups-bright-background-colorful-diet-concept_265030-82.jpg')"></div>
+                </div>
+                <div class="quantity-controls">
+                    <input type="number" class="form-control order-quantity" data-item="icedtea" value="0" min="0" data-price="2.50">
+                </div>
+            </div>
+        </section>
+
+          <!-- Sandwiches Section -->
+        <section>
+            <div class="accordion mb-3" id="SandWichesAccordion">
+                <div class="accordion-item">
+                    <h3 class="accordion-header" id="headingSandWiches">
+                        <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSandWiches" aria-expanded="true" aria-controls="collapseSandWiches">
+                           Sandwiches
+                        </button>
+                    </h3>
+                    <div id="collapseSandWiches" class="accordion-collapse collapse show" aria-labelledby="headingSandWiches" data-bs-parent="#SandWichesAccordion">
+                        <div class="accordion-body">
+                        <div class="d-flex justify-content-between align-items-center mb-3">
+                            <div>
+                    <h5>Turkey Sandwich - $5.00</h5>
+                    <p>( A classic sandwich featuring sliced turkey breast, often paired with lettuce, tomato, and mayonnaise, served between two slices of bread.)</p>
+                    <div class="drink-image" style="background-image: url('https://stordfkenticomedia.blob.core.windows.net/df-us/rms/media/recipemediafiles/recipes/foodservice/desktop%20images/2019_com_alfredo-dijon-turkey-sandwich_900x600.jpg?ext=.jpg')"></div>
+                </div>
+                <div class="quantity-controls">                          
+                    <input type="number" class="form-control order-quantity" data-item="turkeysandwich" value="0" min="0" data-price="6.50">                              
+                </div>
+            </div>
+            
+            <!-- Chicken Pesto Panini -->
+            <div class="d-flex justify-content-between align-items-center mb-3">
+                <div>
+                    <h5>Chicken Pesto Panini - $5.00</h5>
+                    <p>( A flavorful panini made with grilled chicken, basil pesto, and melted cheese pressed between slices of bread, creating a warm and satisfying meal.)</p>
+                    <div class="drink-image" style="background-image: url('https://feelgoodfoodie.net/wp-content/uploads/2017/08/Chicken-Pesto-Panini-13.jpg')"></div>
+                </div>
+                <div class="quantity-controls">
+            <input type="number" class="form-control order-quantity" data-item="chickenpestopanini" value="0" min="0" data-price="7.00">
+            </div>
+            
+            </div>
+            <!-- Veggie Delight Sandwich -->
+            <div class="d-flex justify-content-between align-items-center mb-3">
+                <div>
+                    <h5>Veggie Delight Sandwich - $5.00</h5>
+                    <p>(A nutritious sandwich filled with assorted fresh vegetables such as lettuce, cucumber, tomato, bell peppers, and avocado, often accompanied by cheese and condiments on choice of bread.)</p>
+                    <div class="drink-image" style="background-image: url('https://milios.com/wp-content/uploads/2018/03/MS17_Sandwiches_6VeggieDelite.jpg')"></div>
+                </div>
+                <div class="quantity-controls">
+                    <input type="number" class="form-control order-quantity" data-item="veggiedelightsandwich" value="0" min="0" data-price="5.50">
+                </div>
+            </div>
+            <!-- Ham & Cheese Sandwich -->
+            <div class="d-flex justify-content-between align-items-center mb-3">
+                <div>
+                    <h5>Ham & Cheese Sandwich - $5.00</h5>
+                    <p>(A timeless favorite composed of sliced ham and cheese, typically cheddar or Swiss, layered between slices of bread and optionally grilled or toasted for added flavor.)</p>
+                    <div class="drink-image" style="background-image: url('https://hips.hearstapps.com/hmg-prod/images/190319-ham-and-cheese-416-1553791878.jpg')"></div>
+                </div>
+                <div class="quantity-controls">
+                    <input type="number" class="form-control order-quantity" data-item="hamcheesesandwich" value="0" min="0" data-price="6.00">
+                </div>
+            </div>
+            <!-- Tuna Salad Sandwich -->
+            <div class="d-flex justify-content-between align-items-center mb-3">
+                <div>
+                    <h5>Tuna Salad Sandwich - $5.00</h5>
+                    <p>(A classic sandwich featuring a filling made of canned tuna mixed with mayonnaise, diced celery, onions, and seasonings, served on bread with lettuce and tomato.)</p>
+                    <div class="drink-image" style="background-image: url('https://leitesculinaria.com/wp-content/uploads/2021/05/tuna-salad-sandwich.jpg')"></div>
+                </div>
+                <div class="quantity-controls">
+                    <input type="number" class="form-control order-quantity" data-item="tunasaladsandwich" value="0" min="0" data-price="6.50">
+                </div>
+            </div>
+            <!-- BLT Sandwich -->
+            <div class="d-flex justify-content-between align-items-center mb-3">
+                <div>
+                    <h5>BLT Sandwich - $5.00</h5>
+                    <p>(A beloved sandwich made with crispy bacon, fresh lettuce, and ripe tomatoes stacked between slices of bread, often enhanced with mayonnaise or other condiments.)</p>
+                    <div class="drink-image" style="background-image: url('https://natashaskitchen.com/wp-content/uploads/2020/07/BLT-Sandwich-Recipe-4.jpg')"></div>
+                </div>
+                <div class="quantity-controls">
+                    <input type="number" class="form-control order-quantity" data-item="bltsandwich" value="0" min="0" data-price="5.75">
+                </div>
+            </div>
+            <!-- Grilled Cheese Sandwich -->
+            <div class="d-flex justify-content-between align-items-center mb-3">
+                <div>
+                    <h5>Grilled Cheese Sandwich - $5.00</h5>
+                    <p>(A comforting staple consisting of melted cheese between two slices of buttered bread, grilled or toasted until golden brown and gooey.)</p>
+                    <div class="drink-image" style="background-image: url('https://natashaskitchen.com/wp-content/uploads/2021/08/Grilled-Cheese-Sandwich-SQ.jpg')"></div>
+                </div>
+                <div class="quantity-controls">
+                    <input type="number" class="form-control order-quantity" data-item="grilledcheesesandwich" value="0" min="0" data-price="5.00">
+                </div>
+            </div>
+            <!-- Egg Salad Sandwich -->
+            <div class="d-flex justify-content-between align-items-center mb-3">
+                <div>
+            <h5>Egg Salad Sandwich - $5.00</h5>
+            <p>(A satisfying sandwich filling made from hard-boiled eggs mixed with mayonnaise, mustard, and seasonings, served on bread with lettuce or other toppings.)</p>
+            <div class="drink-image" style="background-image: url('https://images.squarespace-cdn.com/content/v1/5113fcede4b099bd04eebc8d/4c944b4d-94f8-444e-8cb7-f09d3a5069e7/japanese-egg-salad7.jpg')"></div>
+            </div>
+            <div class="quantity-controls">
+            <input type="number" class="form-control order-quantity" data-item="eggsaladsandwich" value="0" min="0" data-price="5.50">
+            </div>
+            
+            </div>
+            <!-- Chicken Caesar Wrap -->
+            <div class="d-flex justify-content-between align-items-center mb-3">
+                <div>
+                    <h5>Chicken Caesar Wrap - $5.00</h5>
+                    <p>( A flavorful wrap featuring grilled chicken, crisp romaine lettuce, Parmesan cheese, and Caesar dressing wrapped in a soft tortilla, offering a handheld twist on the classic Caesar salad.)</p>
+                    <div class="drink-image" style="background-image: url('https://www.erinliveswhole.com/wp-content/uploads/2023/04/chicken-caesar-wraps-9.jpg')"></div>
+                </div>
+                <div class="quantity-controls">
+                    <input type="number" class="form-control order-quantity" data-item="chickencaesarwrap" value="0" min="0" data-price="7.00">
+                </div>
+            </div>
+            <!-- Avocado Toast -->
+            <div class="d-flex justify-content-between align-items-center mb-3">
+                <div>
+                    <h5>Avocado Toast - $5.00</h5>
+                    <p>(A trendy and nutritious dish consisting of mashed avocado spread onto toasted bread, often topped with additional ingredients such as sliced tomatoes, poached eggs, or herbs.)</p>
+                    <div class="drink-image" style="background-image: url('https://upload.wikimedia.org/wikipedia/commons/thumb/5/5b/Avocado_toast_at_Voyager_Espresso_%2833134505776%29.jpg/800px-Avocado_toast_at_Voyager_Espresso_%2833134505776%29.jpg')"></div>
+                </div>
+                <div class="quantity-controls">
+                    <input type="number" class="form-control order-quantity" data-item="avocadotoast" value="0" min="0" data-price="6.25">
+                </div>
+            </div>
+        </section>
+
+        <!-- Personal Information -->
+        <h2 class="my-5">Personal Information</h2>
+        <div class="mb-3">
+            <label for="name" class="form-label">Name</label>
+            <input type="text" class="form-control" id="name" placeholder="Enter your name">
+        </div>
+        <div class="mb-3">
+            <label for="email" class="form-label">Email address</label>
+            <input type="email" class="form-control" id="email" placeholder="name@example.com">
+        </div>
+        <div class="mb-3">
+            <label for="contact" class="form-label"> Number</label>
+            <input type="tel" class="form-control" id="contact" placeholder="Enter your contact number">
+        </div>
+
+        <!-- Total Order -->
+        <h2 class="my-5">Total Order</h2>
+        <div id="totalOrder" class="mb-3"></div>
+
+        <!-- Amount to Pay -->
+        <h2 class="my-5">Amount to Pay</h2>
+        <div id="amountToPay" class="mb-3"></div>
+
+        <button type="button" class="btn btn-primary" id="submitOrder">Submit Order</button>
+    </form>
+</section>
+    
+    <footer class="footer-border text-center mt-4">
+        <p class="mb-0">&copy; 2024 Vitaly Tea. All rights reserved.</p>
+    </footer>
+    
+    <!-- Bootstrap and jQuery scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js"></script>
+    <script src="js/script.js"></script>
+</body>
+</html>
